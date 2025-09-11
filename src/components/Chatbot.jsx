@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Bot, User } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -110,7 +112,7 @@ const Chatbot = () => {
       {/* Chatbot Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+        className="fixed bottom-6 left-6 z-50 bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -124,7 +126,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            className="fixed bottom-24 right-6 z-40 w-80 h-96 bg-white dark:bg-dark-800 rounded-lg shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col"
+            className="fixed top-24 right-6 z-40 w-96 h-5/6 bg-white dark:bg-dark-800 rounded-lg shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col"
           >
             {/* Header */}
             <div className="bg-primary-600 text-white p-4 rounded-t-lg flex items-center justify-between">
@@ -159,7 +161,9 @@ const Chatbot = () => {
                     <div className="flex items-start gap-2">
                       {message.sender === 'bot' && <Bot size={16} className="mt-1 flex-shrink-0" />}
                       {message.sender === 'user' && <User size={16} className="mt-1 flex-shrink-0" />}
-                      <div className="text-sm whitespace-pre-line">{message.text}</div>
+                      <div className="text-sm whitespace-pre-line">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{message.text}</ReactMarkdown>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -187,8 +191,7 @@ const Chatbot = () => {
             </div>
 
             {/* Quick Questions */}
-            {messages.length === 1 && (
-              <div className="px-4 pb-2">
+            <div className="px-4 pb-2">
                 <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick questions:</div>
                 <div className="flex flex-wrap gap-1">
                   {quickQuestions.map((question, index) => (
@@ -202,7 +205,6 @@ const Chatbot = () => {
                   ))}
                 </div>
               </div>
-            )}
 
             {/* Input */}
             <div className="p-4 border-t border-gray-200 dark:border-dark-700">
@@ -218,7 +220,7 @@ const Chatbot = () => {
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim()}
-                  className="bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors"
+                  className="bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 text-white p-2 rounded-lg transition-colors"
                 >
                   <Send size={16} />
                 </button>
@@ -232,3 +234,5 @@ const Chatbot = () => {
 }
 
 export default Chatbot
+
+

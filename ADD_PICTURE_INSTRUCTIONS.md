@@ -69,3 +69,5 @@ public/
 
 ## ✅ Done!
 Once you add your picture and update the code, your portfolio will look even more professional and personal!
+
+
