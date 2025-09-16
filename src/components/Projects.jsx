@@ -19,16 +19,16 @@ const Projects = () => {
         'Real-time notifications',
         'Admin dashboard for job management'
       ],
-      github: 'https://github.com/abdullah-rana/job-portal',
-      live: 'https://job-portal-demo.vercel.app',
+      github: 'https://github.com/AbdullahRana18/job-portal-skill-matching',
+      live: 'https://job-portal-skill-matching.vercel.app/',
       status: 'Completed',
-      category: 'Full-Stack'
+      category: 'Frontend'
     },
     {
       title: 'Student Management System',
       description: 'A complete educational management system with multi-role support, attendance tracking, and grade management for educational institutions.',
       image: '/api/placeholder/600/400',
-      technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap','MVC Web Api'],
+      technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap', 'MVC Web Api'],
       features: [
         'Multi-role authentication (Admin/Teacher/Student)',
         'Attendance tracking system',
@@ -39,19 +39,19 @@ const Projects = () => {
       github: 'https://github.com/AbdullahRana18/SchoolManagementSystem',
       live: 'https://student-mgmt-demo.vercel.app',
       status: 'Completed',
-      category: 'Backend'
+      category: 'full-stack'
     },
     {
       title: 'Foodpanda Clone',
       description: 'A responsive food delivery application clone built with Next.js, featuring modern routing, dynamic content, and mobile-first design.',
       image: '/api/placeholder/600/400',
-     technologies: ['ASP.NET MVC', 'C#', 'EDMX (Entity Data Model)', 'SQL Server', 'HTML', 'CSS', 'Bootstrap'],
-features: [
-  'Role-based authentication for users and admin',
-  'Browse and order food items',
-  'Dynamic order management and receipt generation',
-  'Admin dashboard to manage food items and users',
-  'Database integration with SQL Server using EDMX'
+      technologies: ['ASP.NET MVC', 'C#', 'EDMX (Entity Data Model)', 'SQL Server', 'HTML', 'CSS', 'Bootstrap'],
+      features: [
+        'Role-based authentication for users and admin',
+        'Browse and order food items',
+        'Dynamic order management and receipt generation',
+        'Admin dashboard to manage food items and users',
+        'Database integration with SQL Server using EDMX'
       ],
       github: 'https://github.com/AbdullahRana18/ASP.NET-MVC-Food-Ordering-System',
       live: 'http://foodpandaooad.somee.com/',
@@ -65,17 +65,17 @@ features: [
       technologies: ['JavaScript', 'Bootstrap', 'HTML', 'CSS'],
       features: [
         'Fully responsive design with Bootstrap',
-  'Interactive and dynamic UI using JavaScript',
-  'NFT showcase with cards and details',
-  'Modern marketplace-style layout',
-  'Cross-browser compatibility'
+        'Interactive and dynamic UI using JavaScript',
+        'NFT showcase with cards and details',
+        'Modern marketplace-style layout',
+        'Cross-browser compatibility'
       ],
       github: 'https://github.com/AbdullahRana18/-Liberty-NFT-Market-NFT-Marketplace-',
       live: 'https://libertynftmarket-five.vercel.app/',
       status: 'Completed',
       category: 'Frontend'
     }
-    
+
   ]
 
   const containerVariants = {
@@ -143,7 +143,7 @@ features: [
             {projects.map((project, index) => {
               const CategoryIcon = getCategoryIcon(project.category)
               const categoryColor = getCategoryColor(project.category)
-              
+
               return (
                 <motion.div
                   key={project.title}
@@ -174,7 +174,7 @@ features: [
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                       {project.title}
                     </h3>
-                    
+
                     <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                       {project.description}
                     </p>
@@ -243,7 +243,7 @@ features: [
           </div>
 
           {/* Call to Action */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="text-center mt-16"
           >
