@@ -28,7 +28,7 @@ const Projects = () => {
       title: 'Student Management System',
       description: 'A complete educational management system with multi-role support, attendance tracking, and grade management for educational institutions.',
       image: '/api/placeholder/600/400',
-      technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap'],
+      technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap','MVC Web Api'],
       features: [
         'Multi-role authentication (Admin/Teacher/Student)',
         'Attendance tracking system',
@@ -36,7 +36,7 @@ const Projects = () => {
         'Student profile management',
         'Report generation'
       ],
-      github: 'https://github.com/abdullah-rana/student-management',
+      github: 'https://github.com/AbdullahRana18/SchoolManagementSystem',
       live: 'https://student-mgmt-demo.vercel.app',
       status: 'Completed',
       category: 'Backend'
@@ -45,19 +45,37 @@ const Projects = () => {
       title: 'Foodpanda Clone',
       description: 'A responsive food delivery application clone built with Next.js, featuring modern routing, dynamic content, and mobile-first design.',
       image: '/api/placeholder/600/400',
-      technologies: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript'],
-      features: [
-        'Responsive design for all devices',
-        'Dynamic routing with Next.js',
-        'Modern UI/UX design',
-        'Restaurant and menu browsing',
-        'Shopping cart functionality'
+     technologies: ['ASP.NET MVC', 'C#', 'EDMX (Entity Data Model)', 'SQL Server', 'HTML', 'CSS', 'Bootstrap'],
+features: [
+  'Role-based authentication for users and admin',
+  'Browse and order food items',
+  'Dynamic order management and receipt generation',
+  'Admin dashboard to manage food items and users',
+  'Database integration with SQL Server using EDMX'
       ],
-      github: 'https://github.com/abdullah-rana/foodpanda-clone',
-      live: 'https://foodpanda-clone-demo.vercel.app',
+      github: 'https://github.com/AbdullahRana18/ASP.NET-MVC-Food-Ordering-System',
+      live: 'http://foodpandaooad.somee.com/',
+      status: 'Completed',
+      category: 'Frontend'
+    },
+    {
+      title: 'Liberty NFT Market',
+      description: 'A responsive NFT marketplace clone built with Next.js, showcasing digital assets with modern UI components, optimized performance, and mobile-first design.',
+      image: '/api/placeholder/600/400',
+      technologies: ['JavaScript', 'Bootstrap', 'HTML', 'CSS'],
+      features: [
+        'Fully responsive design with Bootstrap',
+  'Interactive and dynamic UI using JavaScript',
+  'NFT showcase with cards and details',
+  'Modern marketplace-style layout',
+  'Cross-browser compatibility'
+      ],
+      github: 'https://github.com/AbdullahRana18/-Liberty-NFT-Market-NFT-Marketplace-',
+      live: 'https://libertynftmarket-five.vercel.app/',
       status: 'Completed',
       category: 'Frontend'
     }
+    
   ]
 
   const containerVariants = {

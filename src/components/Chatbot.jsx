@@ -41,7 +41,7 @@ const Chatbot = () => {
     },
     projects: {
       keywords: ['projects', 'portfolio', 'work', 'applications', 'built', 'developed'],
-      response: "Abdullah has worked on several key projects:\n\n1. **Job Portal with Skill Matching** - React + Tailwind + ASP.NET Web API + SQL Server\n2. **Student Management System** - ASP.NET Core MVC + EF Core + SQL Server + Bootstrap\n3. **Foodpanda Clone** - Next.js + React + Tailwind\n\nYou can find more details about these projects in the Projects section of his portfolio."
+      response: "Abdullah has worked on several key projects:\n\n1. **Job Portal with Skill Matching** - React + Tailwind + ASP.NET Web API + SQL Server\n2. **Student Management System** - ASP.NET Core MVC + EF Core + SQL Server + Bootstrap\n3. **Foodpanda Clone** - ASP.NET MVC', 'C#', 'EDMX (Entity Data Model)', 'SQL Server', 'HTML', 'CSS', 'Bootstrap\n\nYou can find more details about these projects in the Projects section of his portfolio."
     },
     contact: {
       keywords: ['contact', 'email', 'phone', 'location', 'reach', 'get in touch'],
