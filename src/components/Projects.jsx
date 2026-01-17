@@ -77,7 +77,7 @@ const Projects = () => {
       github: 'https://github.com/AbdullahRana18/SmartProductManagementSystem.DesignPatterns-',
       live: 'https://student-mgmt-demo.vercel.app',
       status: 'Completed',
-      category: 'full-stack',
+      category: 'Full-stack',
       icon: GraduationCap
     },
     {
