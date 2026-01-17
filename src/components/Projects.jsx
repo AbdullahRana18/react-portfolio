@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Github, ExternalLink, Code, Database, Palette, Server } from 'lucide-react'
+import { Github, ExternalLink, Code, Database, Palette, Server, Briefcase, Utensils, Coins, GraduationCap } from 'lucide-react'
 
 const Projects = () => {
   const ref = useRef(null)
@@ -22,7 +22,8 @@ const Projects = () => {
       github: 'https://github.com/AbdullahRana18/job-portal-skill-matching',
       live: 'https://job-portal-skill-matching.vercel.app/',
       status: 'Completed',
-      category: 'Frontend'
+      category: 'Frontend',
+      icon: Briefcase
     },
     {
       title: 'Student Management System',
@@ -39,7 +40,8 @@ const Projects = () => {
       github: 'https://github.com/AbdullahRana18/SchoolManagementSystem',
       live: 'https://student-mgmt-demo.vercel.app',
       status: 'Completed',
-      category: 'full-stack'
+      category: 'full-stack',
+      icon: GraduationCap
     },
     {
       title: 'Foodpanda Clone',
@@ -56,7 +58,8 @@ const Projects = () => {
       github: 'https://github.com/AbdullahRana18/ASP.NET-MVC-Food-Ordering-System',
       live: 'http://foodpandaooad.somee.com/',
       status: 'Completed',
-      category: 'Frontend'
+      category: 'Frontend',
+      icon: Utensils
     },
     {
       title: 'Liberty NFT Market',
@@ -73,7 +76,8 @@ const Projects = () => {
       github: 'https://github.com/AbdullahRana18/-Liberty-NFT-Market-NFT-Marketplace-',
       live: 'https://libertynftmarket-five.vercel.app/',
       status: 'Completed',
-      category: 'Frontend'
+      category: 'Frontend',
+      icon: Coins
     }
 
   ]
@@ -141,7 +145,7 @@ const Projects = () => {
           {/* Projects Grid */}
           <div className="grid lg:grid-cols-2 gap-8">
             {projects.map((project, index) => {
-              const CategoryIcon = getCategoryIcon(project.category)
+              const CategoryIcon = project.icon || getCategoryIcon(project.category)
               const categoryColor = getCategoryColor(project.category)
 
               return (
