@@ -74,7 +74,7 @@ const Projects = () => {
         'Real-time Stock Alerts',
         'Dynamic Discount System'
       ],
-      github: 'https://github.com/AbdullahRana18/SchoolManagementSystem',
+      github: 'https://github.com/AbdullahRana18/SmartProductManagementSystem.DesignPatterns',
       live: 'https://student-mgmt-demo.vercel.app',
       status: 'Completed',
       category: 'full-stack',
