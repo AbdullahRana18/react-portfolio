@@ -43,17 +43,36 @@ const Projects = () => {
       category: 'Full-Stack',
       icon: FilmIcon
     },
-    {
-      title: 'Student Management System',
-      description: 'A complete educational management system with multi-role support, attendance tracking, and grade management for educational institutions.',
+    // {
+    //   title: 'Student Management System',
+    //   description: 'A complete educational management system with multi-role support, attendance tracking, and grade management for educational institutions.',
+    //   image: '/api/placeholder/600/400',
+    //   technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap', 'MVC Web Api'],
+    //   features: [
+    //     'Multi-role authentication (Admin/Teacher/Student)',
+    //     'Attendance tracking system',
+    //     'Grade and marks management',
+    //     'Student profile management',
+    //     'Report generation'
+    //   ],
+    //   github: 'https://github.com/AbdullahRana18/SchoolManagementSystem',
+    //   live: 'https://student-mgmt-demo.vercel.app',
+    //   status: 'Completed',
+    //   category: 'full-stack',
+    //   icon: GraduationCap
+    // },
+     {
+      title: 'ProductManagementSystem.DesignPatterns',
+      description: 'Smart Product Management System is a robust, enterprise-grade ASP.NET Core MVC web application designed for efficient inventory and category management. It distinguishes itself by implementing nine major Design Patterns (including Command, Observer, Builder, and Facade) to solve complex business problems like undoing actions, dynamic pricing, and currency adaptation, ensuring the codebase is scalable, testable, and maintainable.',
       image: '/api/placeholder/600/400',
-      technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap', 'MVC Web Api'],
+      technologies: ['ASP.NET Core MVC', 'Entity Framework', 'SQL Server', 'Bootstrap', 'ASP.NET Core Session & TempData'],
       features: [
-        'Multi-role authentication (Admin/Teacher/Student)',
-        'Attendance tracking system',
-        'Grade and marks management',
-        'Student profile management',
-        'Report generation'
+        'Smart Dashboard',
+        'Step-by-Step Product Creation',
+        'Financial & Pricing Modules',
+        'Undo/Redo Capability',
+        'Real-time Stock Alerts',
+        'Dynamic Discount System'
       ],
       github: 'https://github.com/AbdullahRana18/SchoolManagementSystem',
       live: 'https://student-mgmt-demo.vercel.app',
