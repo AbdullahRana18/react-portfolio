@@ -1,29 +1,47 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Github, ExternalLink, Code, Database, Palette, Server, Briefcase, Utensils, Coins, GraduationCap } from 'lucide-react'
+import { Github, ExternalLink, Code, Database, Palette, Server, Briefcase, Utensils, Coins, GraduationCap, Move3dIcon, MoveLeftIcon, FilmIcon } from 'lucide-react'
 
 const Projects = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, threshold: 0.2 })
 
   const projects = [
-    {
-      title: 'Job Portal with Skill Matching',
-      description: 'A comprehensive job portal featuring role-based authentication, job posting capabilities, and intelligent skill matching algorithm to connect job seekers with relevant opportunities.',
+    // {
+    //   title: 'Job Portal with Skill Matching',
+    //   description: 'A comprehensive job portal featuring role-based authentication, job posting capabilities, and intelligent skill matching algorithm to connect job seekers with relevant opportunities.',
+    //   image: '/api/placeholder/600/400',
+    //   technologies: ['React', 'Tailwind CSS', 'ASP.NET Web API', 'SQL Server'],
+    //   features: [
+    //     'Role-based authentication system',
+    //     'Advanced job search and filtering',
+    //     'Skill matching algorithm',
+    //     'Real-time notifications',
+    //     'Admin dashboard for job management'
+    //   ],
+    //   github: 'https://github.com/AbdullahRana18/job-portal-skill-matching',
+    //   live: 'https://job-portal-skill-matching.vercel.app/',
+    //   status: 'Completed',
+    //   category: 'Frontend',
+    //   icon: Briefcase
+    // },
+      {
+      title: 'CineScope.Microservices',
+      description: 'A microservices-based Movie Management System built with ASP.NET Core, featuring secure authentication via JWT, role-based access, and a modular architecture. It integrates movie data from TMDB API, uses caching and background workers for performance, and provides a user-friendly MVC web interface with admin controls.',
       image: '/api/placeholder/600/400',
-      technologies: ['React', 'Tailwind CSS', 'ASP.NET Web API', 'SQL Server'],
+      technologies: ['ASP.NET Core MVC', 'JWT Authentication', 'ASP.NET Web API', 'SQL Server',"AES Encryption", "Microservices Architecture","Server-Side Sessions"],
       features: [
         'Role-based authentication system',
-        'Advanced job search and filtering',
-        'Skill matching algorithm',
-        'Real-time notifications',
-        'Admin dashboard for job management'
+        'Movie Search & Details',
+        'Parallel Movie Fetching',
+        'Admin Panel for User & Role Management',
+        'Secure Communication Between Service'
       ],
-      github: 'https://github.com/AbdullahRana18/job-portal-skill-matching',
+      github: 'https://github.com/AbdullahRana18/CineScope.Microservices',
       live: 'https://job-portal-skill-matching.vercel.app/',
       status: 'Completed',
-      category: 'Frontend',
-      icon: Briefcase
+      category: 'Full-Stack',
+      icon: FilmIcon
     },
     {
       title: 'Student Management System',
