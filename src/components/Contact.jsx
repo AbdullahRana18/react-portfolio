@@ -214,7 +214,7 @@ This message was sent from Abdullah Rana's portfolio website.
                   Get a copy of my resume to learn more about my experience and skills.
                 </p>
                 <motion.a
-                  href="/Abdullah_Rana_CV.html"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}

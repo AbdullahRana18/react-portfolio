@@ -188,7 +188,7 @@ const Experience = () => {
                   Get In Touch
                 </motion.button>
                 <motion.a
-                  href="/Abdullah_Rana_CV.html"
+                  href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}

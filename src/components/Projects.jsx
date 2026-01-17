@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Github, ExternalLink, Code, Database, Palette, Server, Briefcase, Utensils, Coins, GraduationCap, Move3dIcon, MoveLeftIcon, FilmIcon } from 'lucide-react'
+import { Github, ExternalLink, Code, Database, Palette, Server, Briefcase, Utensils, Coins, GraduationCap, Move3dIcon, MoveLeftIcon, FilmIcon, BoxIcon } from 'lucide-react'
 
 const Projects = () => {
   const ref = useRef(null)
@@ -78,7 +78,7 @@ const Projects = () => {
       live: 'https://student-mgmt-demo.vercel.app',
       status: 'Completed',
       category: 'Full-stack',
-      icon: GraduationCap
+      icon: BoxIcon
     },
     {
       title: 'Foodpanda Clone',
