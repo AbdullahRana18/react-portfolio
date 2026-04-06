@@ -10,7 +10,11 @@ import {
   Palette,
   Server,
   GitBranch,
-  Terminal
+  Terminal,
+  Smartphone,
+  AppWindow,
+  Box,
+  Rocket
 } from 'lucide-react'
 
 const Skills = () => {
@@ -27,6 +31,7 @@ const Skills = () => {
         { name: 'CSS3', level: 90, icon: FileText },
         { name: 'JavaScript', level: 85, icon: Code2 },
         { name: 'React', level: 88, icon: Zap },
+        { name: 'React Native', level: 60, icon: Smartphone },
         { name: 'Tailwind CSS', level: 92, icon: Palette },
         { name: 'Bootstrap', level: 80, icon: Palette }
       ]
@@ -60,10 +65,12 @@ const Skills = () => {
       skills: [
         { name: 'Git/GitHub', level: 88, icon: GitBranch },
         { name: 'Postman', level: 85, icon: Terminal },
-        { name: 'VS Code', level: 95, icon: Code },
+        { name: 'VS Code', level: 95, icon: AppWindow },
+        { name: 'Android Studio', level: 95, icon: Smartphone },
         { name: 'Visual Studio', level: 90, icon: Code },
-        { name: 'OOP', level: 92, icon: Code },
-        { name: 'REST APIs', level: 85, icon: Server }
+        { name: 'OOP', level: 92, icon: Box },
+        { name: 'REST APIs', level: 85, icon: Server },
+        { name: 'EXPO', level: 95, icon: Rocket },
       ]
     }
   ]

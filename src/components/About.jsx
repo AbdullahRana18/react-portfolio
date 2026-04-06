@@ -8,8 +8,8 @@ const About = () => {
 
   const stats = [
     { label: 'CGPA', value: '3.2', icon: Cpu },
-    { label: 'Credit Hours', value: '81.5', icon: Database },
-    { label: 'Semester', value: '6th', icon: Code },
+    { label: 'Credit Hours', value: '101', icon: Database },
+    { label: 'Semester', value: '7th', icon: Code },
     { label: 'Graduation', value: '2026', icon: Palette }
   ]
 
