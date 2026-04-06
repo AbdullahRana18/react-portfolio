@@ -12,7 +12,7 @@ const Projects = () => {
       title: 'Gradiant: Smarter Answers, Better Grades (FYP)',
       description: 'An AI-powered EdTech mobile app for Cambridge students providing examiner-style, marking-scheme-aligned answers. It analyzes text and image-based questions to offer step-by-step guidance, weak area detection, and adaptive learning.',
       image: '/api/placeholder/600/400',
-      technologies: ['React Native', 'Python FastAPI', 'MongoDB', 'Groq API', 'QWEN 2.5'],
+      technologies: ['React Native', 'Python FastAPI', 'Node.js', 'MongoDB', 'Groq API', 'QWEN 2.5'],
       features: [
         'AI-Powered step-by-step answers',
         'Image-based question analysis (Maps, Graphs, Sources)',

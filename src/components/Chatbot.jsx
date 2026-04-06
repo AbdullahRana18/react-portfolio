@@ -26,46 +26,42 @@ const Chatbot = () => {
     scrollToBottom()
   }, [messages])
 
-  const knowledgeBase = {
-    education: {
-      keywords: ['education', 'degree', 'university', 'college', 'study', 'student', 'bscs', 'kiet', 'cgpa', 'semester'],
-      response: "Abdullah is currently pursuing a Bachelor of Science in Computer Science (BSCS) at PAF KIET, Karachi. He's in his 6th semester with a CGPA of 3.2 and has completed 81.5 credit hours. He's expected to graduate in 2026. He also completed FSc Pre-Engineering from Govt. Degree College, Malir Cantt, and Matriculation from Nishan-e-Haider Alma Mater."
-    },
-    skills: {
-      keywords: ['skills', 'technologies', 'programming', 'languages', 'frontend', 'backend', 'database', 'tools'],
-      response: "Abdullah's technical skills include:\n\n**Frontend:** HTML5, CSS3, JavaScript, React, Tailwind CSS, Bootstrap, Ant Design\n**Backend:** C#, ASP.NET MVC, ASP.NET Core, Web API, Entity Framework\n**Database:** SQL Server, MS Access, Firebase\n**Tools:** Git/GitHub, Postman, VS Code, Visual Studio, OOP, REST APIs"
-    },
-    experience: {
-      keywords: ['experience', 'work', 'internship', 'job', 'career', 'professional'],
-      response: "Abdullah has 2 months of internship experience as a Software Intern at Devsinz Intern Connect. During this time, he built CRUD modules using ASP.NET Web API and SQL Server, developed React components with reusable hooks, and collaborated using Git and code reviews."
-    },
-    projects: {
-      keywords: ['projects', 'portfolio', 'work', 'applications', 'built', 'developed'],
-      response: "Abdullah has worked on several key projects:\n\n1. **Job Portal with Skill Matching** - React + Tailwind + ASP.NET Web API + SQL Server\n2. **Student Management System** - ASP.NET Core MVC + EF Core + SQL Server + Bootstrap\n3. **Foodpanda Clone** - ASP.NET MVC', 'C#', 'EDMX (Entity Data Model)', 'SQL Server', 'HTML', 'CSS', 'Bootstrap\n\nYou can find more details about these projects in the Projects section of his portfolio."
-    },
-    contact: {
-      keywords: ['contact', 'email', 'phone', 'location', 'reach', 'get in touch'],
-      response: "You can contact Abdullah at:\n📧 Email: 15341@kiet.edu.pk\n📱 Phone: +92-321-8293386\n📍 Location: Karachi, Pakistan\n🔗 GitHub: github.com/AbdullahRana18\n💼 LinkedIn: linkedin.com/in/abdullah-rana-4326a1290"
-    },
-    general: {
-      keywords: ['hello', 'hi', 'hey', 'who', 'what', 'about'],
-      response: "Hello! I'm here to help you learn about Abdullah Rana's background, education, and technical skills. Feel free to ask me about his studies, programming languages, projects, or experience!"
-    }
-  }
+  const systemPrompt = `You are a dynamic, charismatic, and highly conversational AI assistant representing Abdullah Rana on his personal portfolio. 
+Your ultimate goal is to "sell" Abdullah's skills to recruiters and peers. You act as his biggest fan and hype-man, but in a professional and smart way.
 
-  const findResponse = (message) => {
-    const lowerMessage = message.toLowerCase()
-    
-    for (const [category, data] of Object.entries(knowledgeBase)) {
-      if (data.keywords.some(keyword => lowerMessage.includes(keyword))) {
-        return data.response
-      }
-    }
-    
-    return "I can help you with information about Abdullah's education, skills, experience, projects, or contact details. Could you be more specific about what you'd like to know?"
-  }
+CRITICAL RULES:
+1. Never act like a standard bot (do not say "I am a language model" or "According to the context"). You are Abdullah's exclusive digital assistant!
+2. Answer confidently, warmly, and casually. Use emojis appropriately (like 🚀, 💻, 🔥) to keep the vibe energetic!
+3. Don't sound automated. Speak conversationally. If someone asks "What time is it?" or something off-topic, give a cheeky response like: "Haha, I don't wear a watch! But I do know it's a great time to hire Abdullah! Need to know about his projects?"
+4. Always frame his skills positively and highlight his capability to build full-scale applications, mobile apps, and robust backends.
 
-  const handleSendMessage = () => {
+CONTEXT ABOUT ABDULLAH:
+EDUCATION: Currently pursuing BSCS at PAF KIET in his 7th semester. He has completed 101 Credit Hours with a solid CGPA of 3.2! Expected graduation is 2026. 
+Background: FSc Pre-Engineering from Govt. Degree College, Malir Cantt. Matriculation from Nishan-e-Haider Alma Mater.
+
+SKILLS:
+- Frontend: HTML5, CSS3, JavaScript, React Native (Great for Mobile!), React, Tailwind CSS, Bootstrap
+- Backend: C#, ASP.NET MVC, ASP.NET Core, Python FastAPI, Web API, Node.js
+- Database: SQL Server, MS Access, Firebase, MongoDB
+- Tools/Other: Git/GitHub, Postman, OOP, REST APIs, Groq API integration.
+
+PROJECTS (Highlight these dynamically when asked):
+1. Gradiant: Smarter Answers, Better Grades (FYP): A game-changing AI EdTech mobile app for Cambridge students providing examiner-style, marking-scheme-aligned answers. Built from scratch using React Native, Python FastAPI, MongoDB, and Groq API.
+2. CineScope.Microservices: A highly scalable microservices Movie Management System using ASP.NET Core MVC, JWT Authentication, and SQL Server.
+3. Job Portal with Skill Matching: Built using React, Tailwind CSS, and ASP.NET Web API.
+4. Smart Product Management System: Advanced usage of 9 Design Patterns in ASP.NET Core MVC.
+5. Foodpanda Clone & Liberty NFT Market: Showing versatile UI/UX skills using modern web stacks.
+
+EXPERIENCE: Experienced Software Intern at Devsinz Intern Connect. Developed CRUD modules via ASP.NET Web API and built React components.
+
+CONTACT: 
+- Email: 15341@kiet.edu.pk or the.abdullah.1829@gmail.com
+- Phone: +92-321-8293386
+- GitHub: github.com/AbdullahRana18 (Actively pushing code!)
+
+If someone asks what he can build, confidently state that with his Next-Gen tech stack (React Native + .NET Core/FastAPI), he can build absolutely anything from mobile apps to complex enterprise web systems!`;
+
+  const handleSendMessage = async () => {
     if (!inputValue.trim()) return
 
     const userMessage = {
@@ -76,21 +72,77 @@ const Chatbot = () => {
     }
 
     setMessages(prev => [...prev, userMessage])
+    const currentInput = inputValue; // Save it to use in the fetch block 
     setInputValue('')
     setIsTyping(true)
 
-    // Simulate bot thinking time
-    setTimeout(() => {
+    try {
+      // Import the api key from environment variables
+      const apiKey = import.meta.env.VITE_GROQ_API_KEY;
+      
+      if (!apiKey || apiKey === "your_groq_api_key_here") {
+        throw new Error("API key is missing or invalid. Please add your Groq API key inside the .env file.");
+      }
+
+      // Map chat messages to role-based array for Groq 
+      const chatHistory = messages.map(msg => ({
+        role: msg.sender === 'bot' ? 'assistant' : 'user',
+        content: msg.text
+      }))
+
+      const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "llama-3.1-8b-instant", // Updated to the latest fast model
+          messages: [
+            {
+              role: "system",
+              content: systemPrompt
+            },
+            ...chatHistory,
+            {
+              role: "user",
+              content: currentInput
+            }
+          ],
+          temperature: 0.7,
+        })
+      });
+
+      const data = await response.json();
+      
+      let botReplyText = "I'm sorry, I encountered an error while thinking.";
+      if (data.choices && data.choices.length > 0) {
+        botReplyText = data.choices[0].message.content;
+      } else if (data.error) {
+        botReplyText = `API Error: ${data.error.message}`;
+      }
+
       const botResponse = {
         id: Date.now() + 1,
-        text: findResponse(inputValue),
+        text: botReplyText,
         sender: 'bot',
         timestamp: new Date()
       }
       
       setMessages(prev => [...prev, botResponse])
+      
+    } catch (error) {
+      console.error("Groq Chatbot Error:", error);
+      const botResponse = {
+        id: Date.now() + 1,
+        text: `Error: ${error.message}`,
+        sender: 'bot',
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, botResponse])
+    } finally {
       setIsTyping(false)
-    }, 1000)
+    }
   }
 
   const handleKeyPress = (e) => {
