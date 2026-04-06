@@ -7,29 +7,30 @@ const Projects = () => {
   const isInView = useInView(ref, { once: true, threshold: 0.2 })
 
   const projects = [
-    // {
-    //   title: 'Job Portal with Skill Matching',
-    //   description: 'A comprehensive job portal featuring role-based authentication, job posting capabilities, and intelligent skill matching algorithm to connect job seekers with relevant opportunities.',
-    //   image: '/api/placeholder/600/400',
-    //   technologies: ['React', 'Tailwind CSS', 'ASP.NET Web API', 'SQL Server'],
-    //   features: [
-    //     'Role-based authentication system',
-    //     'Advanced job search and filtering',
-    //     'Skill matching algorithm',
-    //     'Real-time notifications',
-    //     'Admin dashboard for job management'
-    //   ],
-    //   github: 'https://github.com/AbdullahRana18/job-portal-skill-matching',
-    //   live: 'https://job-portal-skill-matching.vercel.app/',
-    //   status: 'Completed',
-    //   category: 'Frontend',
-    //   icon: Briefcase
-    // },
-      {
+
+    {
+      title: 'Gradiant: Smarter Answers, Better Grades (FYP)',
+      description: 'An AI-powered EdTech mobile app for Cambridge students providing examiner-style, marking-scheme-aligned answers. It analyzes text and image-based questions to offer step-by-step guidance, weak area detection, and adaptive learning.',
+      image: '/api/placeholder/600/400',
+      technologies: ['React Native', 'Python FastAPI', 'MongoDB', 'Groq API', 'QWEN 2.5'],
+      features: [
+        'AI-Powered step-by-step answers',
+        'Image-based question analysis (Maps, Graphs, Sources)',
+        'Cambridge marking-scheme alignment',
+        'Adaptive learning & weak area tracking',
+        'Secure multi-role system'
+      ],
+      github: '#',
+      live: '#',
+      status: 'In Progress',
+      category: 'EdTech / AI',
+      icon: GraduationCap
+    },
+    {
       title: 'CineScope.Microservices',
       description: 'A microservices-based Movie Management System built with ASP.NET Core, featuring secure authentication via JWT, role-based access, and a modular architecture. It integrates movie data from TMDB API, uses caching and background workers for performance, and provides a user-friendly MVC web interface with admin controls.',
       image: '/api/placeholder/600/400',
-      technologies: ['ASP.NET Core MVC', 'JWT Authentication', 'ASP.NET Web API', 'SQL Server',"AES Encryption", "Microservices Architecture","Server-Side Sessions"],
+      technologies: ['ASP.NET Core MVC', 'JWT Authentication', 'ASP.NET Web API', 'SQL Server', "AES Encryption", "Microservices Architecture", "Server-Side Sessions"],
       features: [
         'Role-based authentication system',
         'Movie Search & Details',
@@ -61,7 +62,7 @@ const Projects = () => {
     //   category: 'full-stack',
     //   icon: GraduationCap
     // },
-     {
+    {
       title: 'ProductManagementSystem.DesignPatterns',
       description: 'Smart Product Management System is a robust, enterprise-grade ASP.NET Core MVC web application designed for efficient inventory and category management. It distinguishes itself by implementing nine major Design Patterns (including Command, Observer, Builder, and Facade) to solve complex business problems like undoing actions, dynamic pricing, and currency adaptation, ensuring the codebase is scalable, testable, and maintainable.',
       image: '/api/placeholder/600/400',
@@ -115,7 +116,25 @@ const Projects = () => {
       status: 'Completed',
       category: 'Frontend',
       icon: Coins
-    }
+    },
+    {
+      title: 'Job Portal with Skill Matching',
+      description: 'A comprehensive job portal featuring role-based authentication, job posting capabilities, and intelligent skill matching algorithm to connect job seekers with relevant opportunities.',
+      image: '/api/placeholder/600/400',
+      technologies: ['React', 'Tailwind CSS', 'ASP.NET Web API', 'SQL Server'],
+      features: [
+        'Role-based authentication system',
+        'Advanced job search and filtering',
+        'Skill matching algorithm',
+        'Real-time notifications',
+        'Admin dashboard for job management'
+      ],
+      github: 'https://github.com/AbdullahRana18/job-portal-skill-matching',
+      live: 'https://job-portal-skill-matching.vercel.app/',
+      status: 'Completed',
+      category: 'Frontend',
+      icon: Briefcase
+    },
 
   ]
 
@@ -144,6 +163,7 @@ const Projects = () => {
 
   const getCategoryIcon = (category) => {
     switch (category) {
+      case 'EdTech / AI': return GraduationCap
       case 'Full-Stack': return Code
       case 'Backend': return Server
       case 'Frontend': return Palette
@@ -153,6 +173,7 @@ const Projects = () => {
 
   const getCategoryColor = (category) => {
     switch (category) {
+      case 'EdTech / AI': return 'from-teal-400 to-cyan-500'
       case 'Full-Stack': return 'from-blue-500 to-cyan-500'
       case 'Backend': return 'from-green-500 to-emerald-500'
       case 'Frontend': return 'from-purple-500 to-pink-500'
