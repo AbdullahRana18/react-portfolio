@@ -79,7 +79,7 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
     try {
       // Import the api key from environment variables
       const apiKey = import.meta.env.VITE_GROQ_API_KEY;
-      
+
       if (!apiKey || apiKey === "your_groq_api_key_here") {
         throw new Error("API key is missing or invalid. Please add your Groq API key inside the .env file.");
       }
@@ -114,7 +114,7 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
       });
 
       const data = await response.json();
-      
+
       let botReplyText = "I'm sorry, I encountered an error while thinking.";
       if (data.choices && data.choices.length > 0) {
         botReplyText = data.choices[0].message.content;
@@ -128,9 +128,9 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
         sender: 'bot',
         timestamp: new Date()
       }
-      
+
       setMessages(prev => [...prev, botResponse])
-      
+
     } catch (error) {
       console.error("Groq Chatbot Error:", error);
       const botResponse = {
@@ -204,11 +204,10 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
                   className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-xs p-3 rounded-lg ${
-                      message.sender === 'user'
+                    className={`max-w-xs p-3 rounded-lg ${message.sender === 'user'
                         ? 'bg-primary-600 text-white'
                         : 'bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-start gap-2">
                       {message.sender === 'bot' && <Bot size={16} className="mt-1 flex-shrink-0" />}
@@ -220,7 +219,7 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
                   </div>
                 </motion.div>
               ))}
-              
+
               {isTyping && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -244,19 +243,19 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
 
             {/* Quick Questions */}
             <div className="px-4 pb-2">
-                <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick questions:</div>
-                <div className="flex flex-wrap gap-1">
-                  {quickQuestions.map((question, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setInputValue(question)}
-                      className="text-xs bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 px-2 py-1 rounded-full transition-colors"
-                    >
-                      {question}
-                    </button>
-                  ))}
-                </div>
+              <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick questions:</div>
+              <div className="flex flex-wrap gap-1">
+                {quickQuestions.map((question, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setInputValue(question)}
+                    className="text-xs bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 px-2 py-1 rounded-full transition-colors"
+                  >
+                    {question}
+                  </button>
+                ))}
               </div>
+            </div>
 
             {/* Input */}
             <div className="p-4 border-t border-gray-200 dark:border-dark-700">
