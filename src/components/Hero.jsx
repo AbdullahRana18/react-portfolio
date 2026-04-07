@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, Download, MapPin, Phone } from 'lucide-react'
+import { Github, Linkedin, Mail, Download, MapPin, Phone, ChevronsDown } from 'lucide-react'
 
 const Hero = () => {
   const containerVariants = {
@@ -154,18 +154,20 @@ const Hero = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        onClick={() => {
+          const aboutSection = document.querySelector('#about');
+          if (aboutSection) aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
       >
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center"
+          animate={{ y: [0, 12, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="text-primary-500 dark:text-primary-400 drop-shadow-md hover:text-primary-600 transition-colors"
         >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-primary-600 dark:bg-primary-400 rounded-full mt-2"
-          />
+          <ChevronsDown size={36} />
         </motion.div>
       </motion.div>
     </section>

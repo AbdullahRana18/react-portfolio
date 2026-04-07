@@ -42,6 +42,7 @@ const Skills = () => {
       color: 'from-green-500 to-emerald-500',
       skills: [
         { name: 'C#', level: 90, icon: Code },
+        { name: 'Python', level: 85, icon: Code },
         { name: 'ASP.NET MVC', level: 85, icon: Server },
         { name: 'ASP.NET Core', level: 88, icon: Server },
         { name: 'Web API', level: 82, icon: Server },
