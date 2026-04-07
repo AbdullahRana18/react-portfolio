@@ -153,15 +153,17 @@ const Footer = () => {
             </motion.div>
 
             {/* Back to Top Button */}
-            <motion.button
-              onClick={scrollToTop}
-              whileHover={{ scale: 1.1, y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="p-3 bg-primary-600 hover:bg-primary-700 rounded-lg text-white transition-colors duration-200"
-              aria-label="Back to top"
-            >
-              <ArrowUp size={20} />
-            </motion.button>
+            <div className="flex-shrink-0 md:pr-20 lg:pr-24">
+              <motion.button
+                onClick={scrollToTop}
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+                className="p-3 bg-primary-600 hover:bg-primary-700 rounded-lg text-white transition-colors duration-200"
+                aria-label="Back to top"
+              >
+                <ArrowUp size={20} />
+              </motion.button>
+            </div>
           </div>
         </div>
       </div>
