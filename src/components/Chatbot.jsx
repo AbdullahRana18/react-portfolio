@@ -164,7 +164,7 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
       {/* Chatbot Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 left-6 z-50 bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
@@ -178,7 +178,7 @@ If someone asks what he can build, confidently state that with his Next-Gen tech
             initial={{ opacity: 0, y: 20, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.8 }}
-            className="fixed top-24 right-6 z-40 w-96 h-5/6 bg-white dark:bg-dark-800 rounded-lg shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col"
+            className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 left-4 sm:left-auto z-40 sm:w-96 h-[75vh] sm:h-5/6 max-h-[800px] bg-white dark:bg-dark-800 rounded-lg shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col"
           >
             {/* Header */}
             <div className="bg-primary-600 text-white p-4 rounded-t-lg flex items-center justify-between">
