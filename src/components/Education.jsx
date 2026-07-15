@@ -14,8 +14,8 @@ const Education = () => {
       duration: '2022 - Present',
       status: 'Ongoing',
       cgpa: '3.2',
-      creditHours: '101',
-      semester: '7th',
+      creditHours: '120',
+      semester: '8th',
       expectedGraduation: '2026',
       description: 'Pursuing comprehensive computer science education with focus on software development, algorithms, and system design.',
       courses: [
