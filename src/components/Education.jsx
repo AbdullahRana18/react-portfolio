@@ -40,7 +40,7 @@ const Education = () => {
         'Data Science Fundamentals'
       ],
       achievements: [
-        'Completed 116.5 credit hours',
+        'Completed 120 credit hours',
         'Completed Final Year Project evaluation',
         'Built multiple full-stack and software development projects'
       ],

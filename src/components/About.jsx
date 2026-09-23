@@ -9,7 +9,7 @@ const About = () => {
   const stats = [
     { label: 'CGPA', value: '3.2', icon: Cpu },
     { label: 'Credit Hours', value: '120', icon: Database },
-    { label: 'Semester', value: '8th', icon: Code },
+    { label: 'Semester', value: 'Final', icon: Code },
     { label: 'Graduation', value: '2026', icon: Palette }
   ]
 
@@ -60,8 +60,8 @@ const About = () => {
             <motion.div variants={itemVariants} className="space-y-6">
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  I'm a dedicated Computer Science student at PAF KIET, currently in my 6th semester 
-                  with a strong foundation in both frontend and backend development. My journey in 
+                  I'm a dedicated Computer Science student at PAF KIET, currently in my final semester 
+                  with 120 credit hours completed and a strong foundation in both frontend and backend development. My journey in 
                   technology began with a passion for solving real-world problems through code.
                 </p>
                 

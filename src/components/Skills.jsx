@@ -14,7 +14,8 @@ import {
   Smartphone,
   AppWindow,
   Box,
-  Rocket
+  Rocket,
+  Globe
 } from 'lucide-react'
 
 const Skills = () => {
@@ -31,6 +32,7 @@ const Skills = () => {
         { name: 'CSS3', level: 90, icon: FileText },
         { name: 'JavaScript', level: 85, icon: Code2 },
         { name: 'React', level: 88, icon: Zap },
+        { name: 'Next.js', level: 85, icon: Globe },
         { name: 'React Native', level: 60, icon: Smartphone },
         { name: 'Tailwind CSS', level: 92, icon: Palette },
         { name: 'Bootstrap', level: 80, icon: Palette }

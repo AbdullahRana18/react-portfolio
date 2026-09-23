@@ -1,6 +1,17 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { MessageCircle, X, Send, Bot, User } from 'lucide-react'
+import {
+  Sparkles,
+  X,
+  Send,
+  Bot,
+  RotateCcw,
+  GraduationCap,
+  Code2,
+  Briefcase,
+  Mail,
+  ChevronRight
+} from 'lucide-react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 
@@ -30,6 +41,17 @@ const Chatbot = () => {
     scrollToBottom()
   }, [messages, isTyping])
 
+  const handleResetChat = () => {
+    setMessages([
+      {
+        id: Date.now(),
+        text: "Hi! I'm Abdullah's AI assistant. Ask me anything about his education, skills, projects, or experience!",
+        sender: 'bot',
+        timestamp: new Date()
+      }
+    ])
+  }
+
   const systemPrompt = `
 You are Abdullah Rana's personal AI portfolio assistant.
 
@@ -45,13 +67,13 @@ IMPORTANT RULES:
 7. If something is not mentioned in the information below, simply say that you don't have that information.
 8. When recruiters ask about Abdullah's capabilities, clearly explain what he has actually worked with.
 9. If someone asks an unrelated casual question, respond naturally and, when appropriate, bring the conversation back toward Abdullah's portfolio.
-10. Use Markdown when it improves readability.
+10. CRITICAL FORMATTING: When listing technical skills, projects, or education, ALWAYS use structured bullet points grouped with bold headings (e.g. - **Frontend:** React, Next.js...). NEVER format lists into markdown tables (| col1 | col2 |), because tables look crowded and broken in mobile and chat windows.
 
 ABOUT ABDULLAH RANA:
 
 EDUCATION:
 - BS Computer Science at PAF-KIET
-- Currently in his final semester
+- Currently in his final semester (8th semester)
 - 120 credit hours completed
 - CGPA: 3.2 / 4.00
 - Expected graduation: 2026
@@ -256,24 +278,82 @@ When discussing Abdullah's capabilities:
   }
 
   const quickQuestions = [
-    "What's Abdullah's education?",
-    'What are his technical skills?',
-    'Tell me about his projects',
-    'What does he do at CloudEx?',
-    'How can I contact him?'
+    { text: "What's Abdullah's education?", icon: GraduationCap },
+    { text: 'What are his technical skills?', icon: Code2 },
+    { text: 'Tell me about his projects', icon: Sparkles },
+    { text: 'What does he do at CloudEx?', icon: Briefcase },
+    { text: 'How can I contact him?', icon: Mail }
   ]
+
+  const markdownComponents = {
+    p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
+    strong: ({ children }) => (
+      <strong className="font-semibold text-gray-900 dark:text-white">
+        {children}
+      </strong>
+    ),
+    ul: ({ children }) => (
+      <ul className="list-disc pl-4 space-y-1 mb-2">{children}</ul>
+    ),
+    ol: ({ children }) => (
+      <ol className="list-decimal pl-4 space-y-1 mb-2">{children}</ol>
+    ),
+    li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+    table: ({ children }) => (
+      <div className="overflow-x-auto my-2 rounded-lg border border-gray-200 dark:border-dark-600 chatbot-scrollbar">
+        <table className="min-w-full divide-y divide-gray-200 dark:divide-dark-600 text-xs text-left">
+          {children}
+        </table>
+      </div>
+    ),
+    thead: ({ children }) => (
+      <thead className="bg-gray-50 dark:bg-dark-900 font-semibold text-gray-700 dark:text-gray-200">
+        {children}
+      </thead>
+    ),
+    th: ({ children }) => (
+      <th className="px-2.5 py-1.5 font-semibold text-gray-700 dark:text-gray-200">
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td className="px-2.5 py-1.5 border-t border-gray-100 dark:border-dark-700 text-gray-700 dark:text-gray-300">
+        {children}
+      </td>
+    ),
+    code: ({ inline, children }) =>
+      inline ? (
+        <code className="bg-gray-200 dark:bg-dark-600 text-primary-600 dark:text-primary-400 px-1 py-0.5 rounded text-xs font-mono">
+          {children}
+        </code>
+      ) : (
+        <code className="block bg-gray-900 text-gray-100 p-2.5 rounded-lg text-xs font-mono overflow-x-auto my-2 chatbot-scrollbar">
+          {children}
+        </code>
+      )
+  }
 
   return (
     <>
       {/* Chatbot Toggle Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50 bg-primary-600 hover:bg-primary-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-[9999] bg-primary-600 hover:bg-primary-700 text-white p-3.5 sm:p-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center justify-center focus:outline-none"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.92 }}
         aria-label={isOpen ? 'Close chatbot' : 'Open chatbot'}
       >
-        {isOpen ? <X size={24} /> : <MessageCircle size={24} />}
+        {isOpen ? (
+          <X size={24} className="text-white" />
+        ) : (
+          <div className="relative flex items-center justify-center">
+            <Sparkles size={24} className="text-white" />
+            <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+            </span>
+          </div>
+        )}
       </motion.button>
 
       {/* Chatbot Window */}
@@ -283,7 +363,7 @@ When discussing Abdullah's capabilities:
             initial={{
               opacity: 0,
               y: 20,
-              scale: 0.8
+              scale: 0.95
             }}
             animate={{
               opacity: 1,
@@ -293,38 +373,52 @@ When discussing Abdullah's capabilities:
             exit={{
               opacity: 0,
               y: 20,
-              scale: 0.8
+              scale: 0.95
             }}
             transition={{
               duration: 0.2
             }}
-            className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 left-4 sm:left-auto z-40 sm:w-96 h-[75vh] sm:h-5/6 max-h-[800px] bg-white dark:bg-dark-800 rounded-lg shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col overflow-hidden"
+            className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 left-4 sm:left-auto z-[9999] sm:w-[390px] md:w-[410px] h-[540px] max-h-[calc(100vh-120px)] bg-white dark:bg-dark-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-dark-700 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-primary-600 text-white p-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Bot size={20} />
+            <div className="bg-primary-600 text-white px-4 py-3.5 flex items-center justify-between shadow-sm select-none">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center shrink-0">
+                  <Sparkles size={18} className="text-white" />
+                </div>
                 <div>
-                  <span className="font-semibold block">
+                  <span className="font-semibold text-sm sm:text-base block leading-tight text-white">
                     Ask About Abdullah
                   </span>
-                  <span className="text-xs text-primary-100">
+                  <span className="text-[11px] text-primary-100 flex items-center gap-1.5 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_#34d399]"></span>
                     AI Portfolio Assistant
                   </span>
                 </div>
               </div>
 
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-white hover:text-gray-200 transition-colors"
-                aria-label="Close chatbot"
-              >
-                <X size={18} />
-              </button>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={handleResetChat}
+                  className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/15 transition-colors"
+                  title="Reset conversation"
+                  aria-label="Reset chat"
+                >
+                  <RotateCcw size={16} />
+                </button>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="p-1.5 rounded-lg text-white/80 hover:text-white hover:bg-white/15 transition-colors"
+                  aria-label="Close chatbot"
+                >
+                  <X size={18} />
+                </button>
+              </div>
             </div>
 
-            {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            {/* Messages Feed */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-3.5 chatbot-scrollbar scroll-smooth">
               {messages.map(message => (
                 <motion.div
                   key={message.id}
@@ -342,39 +436,58 @@ When discussing Abdullah's capabilities:
                       : 'justify-start'
                   }`}
                 >
-                  <div
-                    className={`max-w-[85%] p-3 rounded-lg ${
-                      message.sender === 'user'
-                        ? 'bg-primary-600 text-white'
-                        : 'bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white'
-                    }`}
-                  >
-                    <div className="flex items-start gap-2">
-                      {message.sender === 'bot' && (
-                        <Bot
-                          size={16}
-                          className="mt-1 flex-shrink-0"
-                        />
-                      )}
-
-                      {message.sender === 'user' && (
-                        <User
-                          size={16}
-                          className="mt-1 flex-shrink-0"
-                        />
-                      )}
-
-                      <div className="text-sm break-words">
+                  {message.sender === 'bot' ? (
+                    <div className="flex items-start gap-2.5 max-w-[88%]">
+                      <div className="w-7 h-7 rounded-lg bg-primary-100 dark:bg-primary-950 text-primary-600 dark:text-primary-400 flex items-center justify-center shrink-0 mt-0.5">
+                        <Bot size={15} />
+                      </div>
+                      <div className="bg-gray-100 dark:bg-dark-700 text-gray-900 dark:text-white px-3.5 py-2.5 rounded-2xl rounded-tl-xs text-sm break-words shadow-xs">
                         <ReactMarkdown
                           remarkPlugins={[remarkGfm]}
+                          components={markdownComponents}
                         >
                           {message.text}
                         </ReactMarkdown>
                       </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex justify-end max-w-[85%]">
+                      <div className="bg-primary-600 text-white px-4 py-2.5 rounded-2xl rounded-tr-xs text-sm break-words shadow-sm">
+                        <p className="whitespace-pre-wrap">{message.text}</p>
+                      </div>
+                    </div>
+                  )}
                 </motion.div>
               ))}
+
+              {/* Initial Suggestions inside the scroll feed */}
+              {messages.length <= 1 && (
+                <div className="pt-2 pl-9.5 space-y-2">
+                  <p className="text-[11px] font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1.5">
+                    <Sparkles size={11} className="text-primary-500" />
+                    Suggested questions:
+                  </p>
+                  <div className="flex flex-col gap-1.5">
+                    {quickQuestions.map((q, index) => {
+                      const Icon = q.icon
+                      return (
+                        <button
+                          key={index}
+                          onClick={() => handleSendMessage(q.text)}
+                          disabled={isTyping}
+                          className="text-left text-xs bg-gray-50 dark:bg-dark-700/80 hover:bg-primary-50 dark:hover:bg-dark-600 text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400 border border-gray-200 dark:border-dark-600/90 rounded-xl px-3 py-2 transition-all flex items-center justify-between group shadow-2xs hover:border-primary-400 dark:hover:border-primary-500 active:scale-95"
+                        >
+                          <div className="flex items-center gap-2">
+                            <Icon size={13} className="text-primary-600 dark:text-primary-400 shrink-0" />
+                            <span>{q.text}</span>
+                          </div>
+                          <ChevronRight size={13} className="text-gray-400 group-hover:text-primary-500 group-hover:translate-x-0.5 transition-all" />
+                        </button>
+                      )
+                    })}
+                  </div>
+                </div>
+              )}
 
               {/* Typing Indicator */}
               {isTyping && (
@@ -383,26 +496,18 @@ When discussing Abdullah's capabilities:
                   animate={{ opacity: 1 }}
                   className="flex justify-start"
                 >
-                  <div className="bg-gray-100 dark:bg-dark-700 p-3 rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <Bot size={16} />
-
-                      <div className="flex space-x-1">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
-
-                        <div
-                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                          style={{
-                            animationDelay: '0.1s'
-                          }}
-                        />
-
-                        <div
-                          className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
-                          style={{
-                            animationDelay: '0.2s'
-                          }}
-                        />
+                  <div className="flex items-start gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-primary-100 dark:bg-primary-950 text-primary-600 dark:text-primary-400 flex items-center justify-center shrink-0 mt-0.5">
+                      <Bot size={15} />
+                    </div>
+                    <div className="bg-gray-100 dark:bg-dark-700 px-3.5 py-2.5 rounded-2xl rounded-tl-xs flex items-center gap-2">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        Abdullah's AI is typing
+                      </span>
+                      <div className="flex space-x-1 items-center">
+                        <div className="w-1.5 h-1.5 bg-primary-600 rounded-full animate-bounce [animation-delay:-0.3s]" />
+                        <div className="w-1.5 h-1.5 bg-primary-600 rounded-full animate-bounce [animation-delay:-0.15s]" />
+                        <div className="w-1.5 h-1.5 bg-primary-600 rounded-full animate-bounce" />
                       </div>
                     </div>
                   </div>
@@ -412,29 +517,9 @@ When discussing Abdullah's capabilities:
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Quick Questions */}
-            <div className="px-4 pb-2">
-              <div className="text-xs text-gray-500 dark:text-gray-400 mb-2">
-                Quick questions:
-              </div>
-
-              <div className="flex flex-wrap gap-1">
-                {quickQuestions.map((question, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSendMessage(question)}
-                    disabled={isTyping}
-                    className="text-xs bg-gray-100 dark:bg-dark-700 hover:bg-gray-200 dark:hover:bg-dark-600 disabled:opacity-50 px-2 py-1 rounded-full transition-colors"
-                  >
-                    {question}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Input */}
-            <div className="p-4 border-t border-gray-200 dark:border-dark-700">
-              <div className="flex gap-2">
+            {/* Input Bar */}
+            <div className="p-3 border-t border-gray-200 dark:border-dark-700 bg-white dark:bg-dark-800">
+              <div className="flex gap-2 items-center bg-gray-50 dark:bg-dark-700/60 border border-gray-200 dark:border-dark-600 rounded-xl px-3 py-1.5 focus-within:ring-2 focus-within:ring-primary-500 focus-within:border-primary-500 transition-all">
                 <input
                   type="text"
                   value={inputValue}
@@ -442,16 +527,26 @@ When discussing Abdullah's capabilities:
                   onKeyDown={handleKeyPress}
                   placeholder="Ask about Abdullah..."
                   disabled={isTyping}
-                  className="flex-1 px-3 py-2 border border-gray-300 dark:border-dark-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-white dark:bg-dark-700 text-gray-900 dark:text-white text-sm disabled:opacity-60"
+                  className="flex-1 bg-transparent text-gray-900 dark:text-white text-sm py-1 outline-none placeholder-gray-400 dark:placeholder-gray-500 disabled:opacity-60"
                 />
+
+                {inputValue.trim() && (
+                  <button
+                    onClick={() => setInputValue('')}
+                    className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+                    title="Clear input"
+                  >
+                    <X size={14} />
+                  </button>
+                )}
 
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={!inputValue.trim() || isTyping}
-                  className="bg-primary-500 hover:bg-primary-600 disabled:bg-gray-300 dark:disabled:bg-dark-600 text-white p-2 rounded-lg transition-colors"
+                  className="bg-primary-600 hover:bg-primary-700 disabled:bg-gray-300 dark:disabled:bg-dark-600 text-white p-2 rounded-lg transition-colors shrink-0 flex items-center justify-center disabled:opacity-50"
                   aria-label="Send message"
                 >
-                  <Send size={16} />
+                  <Send size={15} />
                 </button>
               </div>
             </div>
